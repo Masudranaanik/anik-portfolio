@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md. Masud Rana Anik | Network Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --bg-dark: #0f172a;
+            --text-light: #f8fafc;
+            --text-gray: #cbd5e1;
+            --card-bg: rgba(30, 41, 59, 0.7);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-dark); color: var(--text-light); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* Navbar */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 1rem 0;
+        }
+        nav {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--text-light); }
+        .logo span { color: var(--primary); }
+        
+        /* Social Media Icons */
+        .social-nav { display: flex; align-items: center; gap: 20px; }
+        .social-nav a { font-size: 1.2rem; color: var(--text-gray); transition: 0.3s; }
+        .social-nav a:hover { color: var(--primary); transform: translateY(-3px); }
+        .social-nav .whatsapp-nav { color: #25D366; font-size: 1.5rem; }
+
+        /* HERO SECTION */
+        .hero {
+            padding-top: 120px;
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 40%);
+        }
+        .hero-container {
+            max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap-reverse;
+        }
+        .hero-text { flex: 1; min-width: 300px; margin-right: 2rem; }
+        
+        .hero-text h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 10px; font-weight: 700; }
+        .hero-text h1 span { color: var(--primary); }
+        
+        .hero-text h2 { font-size: 1.8rem; color: var(--text-light); margin-bottom: 1.5rem; font-weight: 600; }
+        .typing-text { color: var(--secondary); border-right: 3px solid var(--primary); padding-right: 5px; animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        .hero-text p { font-size: 1.1rem; color: var(--text-gray); margin-bottom: 2.5rem; line-height: 1.6; max-width: 550px; }
+        
+        .btn-whatsapp {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #25D366; color: white; padding: 12px 30px; border-radius: 50px;
+            font-weight: 600; font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6); }
+
+        .hero-img-box {
+            flex: 1; min-width: 300px; display: flex; justify-content: center; align-items: flex-end; position: relative;
+        }
+        .hero-img-box::before {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 350px; height: 350px; background: var(--primary); opacity: 0.2; border-radius: 50%; filter: blur(50px); z-index: -1;
+        }
+        
+        /* ---- ছবি মাস্কিং এর নতুন কোড (Left, Right, Bottom Fade) ---- */
+        .hero-img {
+            width: 100%; max-width: 450px; height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+            /* এই কোডটি ছবিকে গোল করে চারপাশ থেকে ফেড করে দেবে */
+            -webkit-mask-image: radial-gradient(ellipse 95% 90% at 50% 30%, black 50%, transparent 100%);
+            mask-image: radial-gradient(ellipse 95% 90% at 50% 30%, black 50%, transparent 100%);
+        }
+        /* ----------------------------------------------------------- */
+
+        /* SECTIONS */
+        section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 2.5rem; color: var(--text-light); margin-bottom: 1rem; }
+        .section-header .line { width: 80px; height: 4px; background: var(--primary); margin: 0 auto; border-radius: 2px; }
+
+        /* TIMELINE */
+        .timeline-container { border-left: 3px solid var(--primary); padding-left: 30px; margin-left: 10px; }
+        .timeline-item { margin-bottom: 40px; position: relative; }
+        .timeline-dot { position: absolute; left: -39px; top: 5px; width: 16px; height: 16px; background: var(--primary); border-radius: 50%; }
+        .timeline-title { font-size: 1.4rem; color: var(--text-light); }
+        .timeline-subtitle { color: var(--secondary); font-size: 1rem; margin-bottom: 15px; display: block;}
+        .timeline-desc { color: var(--text-gray); line-height: 1.6; }
+
+        /* SKILLS GRID */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .skill-card { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; transition: 0.3s; }
+        .skill-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .skill-card h3 { display: flex; align-items: center; gap: 10px; font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--secondary); }
+        .skill-list li { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.95rem; color: var(--text-gray); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
+        .skill-list li span:last-child { color: var(--accent); font-weight: 600; font-size: 0.8rem; }
+
+        /* CONTACT & FOOTER */
+        .contact-box {
+            text-align: center; background: linear-gradient(145deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9));
+            padding: 3rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .contact-item { font-size: 1.2rem; margin: 15px 0; color: var(--text-gray); }
+        .contact-item i { color: var(--primary); margin-right: 10px; }
+        footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 4rem; color: #64748b; }
+
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-container { text-align: center; padding-top: 20px; }
+            .hero-text { margin-right: 0; margin-top: 2rem; }
+            .btn-whatsapp { width: 100%; justify-content: center; }
+            .social-nav { gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Masud<span>.Rana</span></div>
+            <div class="social-nav">
+                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/8801837699673" target="_blank" class="whatsapp-nav" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Hi, I'm <br><span>Md. Masud Rana Anik</span></h1>
+                <h2>I am a <span class="typing-text"></span></h2>
+                <p>
+                    A dedicated Computer Science professional with proven expertise in <strong>Network Engineering</strong> and <strong>IT Infrastructure</strong>. 
+                    Currently ensuring seamless operations at DIPTI through advanced router configuration, surveillance setup, and hardware maintenance.
+                </p>
+                <a href="https://wa.me/8801837699673" target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+            </div>
+            <div class="hero-img-box">
+                <img src="masud-bg-removed.png" alt="Masud Rana Profile" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-header">
+            <h2>Technical Expertise</h2>
+            <div class="line"></div>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3><i class="fas fa-network-wired"></i> Advanced Networking</h3>
+                <ul class="skill-list">
+                    <li>Cisco & MikroTik Config <span>Expert</span></li>
+                    <li>VLAN, Inter-VLAN & Trunking <span>CCNA</span></li>
+                    <li>Routing Protocols (OSPF) <span>Advanced</span></li>
+                    <li>NAT & DHCP Configuration <span>Proficient</span></li>
+                    <li>Subnetting & IP Mgmt <span>Core Skill</span></li>
+                    <li>ACL (Standard/Extended) <span>Security</span></li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fas fa-tools"></i> Hardware & IT Support</h3>
+                <ul class="skill-list">
+                    <li>CCTV Installation (DVR/NVR) <span>Professional</span></li>
+                    <li>PC Assembly & Maintenance <span>Hands-on</span></li>
+                    <li>Printer & Scanner Setup <span>Daily Task</span></li>
+                    <li>Hardware Troubleshooting <span>Expert</span></li>
+                    <li>Network Cabling & Termination <span>Physical</span></li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fas fa-laptop-code"></i> Software & Tools</h3>
+                <ul class="skill-list">
+                    <li>Windows 10/11 Administration <span>OS</span></li>
+                    <li>Linux (Basic Operation) <span>OS</span></li>
+                    <li>Cisco Packet Tracer <span>Simulation</span></li>
+                    <li>MS Office (Word, Excel, PPT) <span>Documentation</span></li>
+                    <li>Basic IoT & Automation <span>Emerging</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="section-header">
+            <h2>Professional Journey</h2>
+            <div class="line"></div>
+        </div>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="timeline-title">Assistant IT Officer</h3>
+                <span class="timeline-subtitle">DIPTI (Daffodil Int. Professional Training Institute) | Nov 2025 - Present</span>
+                <p class="timeline-desc">
+                    • <strong>Network Management:</strong> Configuring MikroTik & Cisco routers to ensure stable LAN/WAN connectivity.<br>
+                    • <strong>Security:</strong> Installing and maintaining CCTV surveillance systems (DVR/NVR).<br>
+                    • <strong>Support:</strong> Managing daily IT operations, OS installations, and lab environment troubleshooting.
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot" style="background: var(--accent);"></div>
+                <h3 class="timeline-title">Industrial Attachment (CCNA)</h3>
+                <span class="timeline-subtitle">DIPTI | Sept 2025 - Nov 2025</span>
+                <p class="timeline-desc">
+                    • Completed intensive training on <strong>Routing & Switching</strong>.<br>
+                    • Implemented secure data flow using Standard/Extended <strong>ACLs</strong>.<br>
+                    • Designed secure network simulations using <strong>Cisco Packet Tracer</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="section-header">
+            <h2>Education History</h2>
+            <div class="line"></div>
+        </div>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="timeline-title">Diploma in Engineering</h3>
+                <span class="timeline-subtitle">Computer Science and Technology | Barguna Govt Polytechnic Institute</span>
+                <p class="timeline-desc">
+                    • <strong>Passing Year:</strong> 2026<br>
+                    • <strong>CGPA:</strong> 3.33 / 4.00
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot" style="background: var(--accent);"></div>
+                <h3 class="timeline-title">Secondary School Certificate (SSC)</h3>
+                <span class="timeline-subtitle">Science Group | H.M. Institution</span>
+                <p class="timeline-desc">
+                    • <strong>Passing Year:</strong> 2021<br>
+                    • <strong>GPA:</strong> 4.78 / 5.00
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-box">
+            <h2>Let's Work Together</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-gray);">Ready to manage your IT infrastructure?</p>
+            
+            <div class="contact-item"><i class="fas fa-phone"></i> +880 1837-699673</div>
+            <div class="contact-item"><i class="fas fa-envelope"></i> masud.rana.anik@outlook.com</div>
+            <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Washpur Garden City, Keraniganj, Dhaka</div>
+            
+            <br>
+            <a href="https://wa.me/8801837699673" target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Message Me
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Md. Masud Rana Anik. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const textElement = document.querySelector('.typing-text');
+        const texts = ["Assistant IT Officer", "Network Engineer", "Surveillance System Specialist", "Tech Enthusiast"];
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
+        let isDeleting = false;
+
+        (function type() {
+            if (count === texts.length) { count = 0; }
+            currentText = texts[count];
+
+            if (isDeleting) {
+                letter = currentText.slice(0, --index);
+            } else {
+                letter = currentText.slice(0, ++index);
+            }
+
+            textElement.textContent = letter;
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && letter.length === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && letter.length === 0) {
+                isDeleting = false;
+                count++;
+                typeSpeed = 500;
+            }
+            setTimeout(type, typeSpeed);
+        })();
+    </script>
+</body>
+</html>
