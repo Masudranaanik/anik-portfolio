@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects | Masud Rana Anik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #0ea5e9;
+            --bg-dark: #0f172a;
+            --text-light: #f8fafc;
+            --text-gray: #cbd5e1;
+            --card-bg: rgba(30, 41, 59, 0.7);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-light); }
+        a { text-decoration: none; color: inherit; }
+
+        /* Navbar (Same as main page) */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05); padding: 1rem 0;
+        }
+        nav { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--text-light); }
+        .logo span { color: var(--primary); }
+        
+        .home-btn { 
+            background: var(--primary); color: white !important; 
+            padding: 8px 18px; border-radius: 20px; 
+            font-size: 0.95rem; font-weight: 600; transition: 0.3s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .home-btn:hover { background: var(--secondary); transform: translateY(-3px); }
+
+        /* Video Section Styles */
+        .video-section { padding: 120px 2rem 5rem; max-width: 1200px; margin: 0 auto; min-height: 100vh; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.5rem; color: var(--text-light); margin-bottom: 10px; }
+        .section-header .line { width: 80px; height: 4px; background: var(--primary); margin: 0 auto; border-radius: 2px; }
+
+        /* Grid Layout */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        
+        /* Video Card */
+        .video-card { 
+            background: var(--card-bg); border-radius: 15px; overflow: hidden; 
+            border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s, box-shadow 0.3s; 
+        }
+        .video-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        
+        /* YouTube Embed Wrapper for Responsiveness */
+        .video-wrapper { position: relative; padding-bottom: 56.25%; /* 16:9 ratio */ height: 0; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        
+        /* Video Details (Title & Description) */
+        .video-info { padding: 1.5rem; text-align: center; }
+        .video-info h3 { color: var(--secondary); font-size: 1.3rem; margin-bottom: 8px; }
+        .video-info p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; }
+
+        footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 4rem; color: #64748b; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Masud<span>.Rana</span></div>
+            <a href="index.html" class="home-btn"><i class="fas fa-home"></i> Back to Home</a>
+        </nav>
+    </header>
+
+    <section class="video-section">
+        <div class="section-header">
+            <h2>My Work Demonstrations</h2>
+            <div class="line"></div>
+            <p style="color: var(--text-gray); margin-top: 15px;">A collection of my practical networking and IT setup projects.</p>
+        </div>
+
+        <div class="video-grid">
+            
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/L8CSKDETJ8s?si=wQakbOnMN0r1Nw8i" title="YouTube video" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>MikroTik Router Setup</h3>
+                    <p>Basic configuration, assigning IP addresses, and setting up DHCP server using Winbox.</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="YouTube video" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Cisco Packet Tracer Lab</h3>
+                    <p>VLAN routing and OSPF configuration to ensure secure data flow between networks.</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="YouTube video" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>CCTV Surveillance Setup</h3>
+                    <p>Installing NVR/DVR systems, camera placement strategies, and remote viewing setup.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Md. Masud Rana Anik. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
