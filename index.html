@@ -43,6 +43,7 @@
         .logo { font-size: 1.8rem; font-weight: 700; color: var(--text-light); }
         .logo span { color: var(--primary); }
         
+        /* Social & Header Buttons */
         .social-nav { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
         .social-nav a.icon { font-size: 1.2rem; color: var(--text-gray); transition: 0.3s; }
         .social-nav a.icon:hover { color: var(--primary); transform: translateY(-3px); }
@@ -307,7 +308,7 @@
             
             <div class="hero-img-box">
                 <div class="img-wrapper" style="position: relative; display: flex; justify-content: center; width: 100%;">
-                    <img src="masud-bg-removed.png" alt="Masud Rana Profile" class="hero-img" id="profile-img" style="opacity: 0;">
+                    <img src="masud-bg-removed.jpg" alt="Masud Rana Profile" class="hero-img" id="profile-img" style="opacity: 0;">
                 </div>
             </div>
 
@@ -400,7 +401,7 @@
     </footer>
 
     <script>
-        // Flying Text Animation for Main Heading
+        // Flying Text Animation
         const headingElement = document.getElementById('animated-heading');
         const line1 = "Hi, I'm";
         const line2 = "Md. Masud Rana Anik";
@@ -443,20 +444,22 @@
             setTimeout(type, typeSpeed);
         })();
 
-        // NEW: Image Fragment Assemble Animation
+        // FIXED: Robust Image Fragment Assemble Animation for GitHub Pages
         function assembleImage() {
             const img = document.getElementById('profile-img');
             if (!img) return;
 
+            // Fallback: If animation fails or network is slow, just show the image normally
+            const fallbackTimer = setTimeout(() => {
+                img.style.opacity = '1';
+            }, 2000);
+
             const runAssemble = () => {
+                clearTimeout(fallbackTimer);
+                
                 const wrapper = img.parentElement;
                 const w = img.clientWidth || 350;
                 const h = img.clientHeight || 400;
-
-                if(w === 0 || h === 0) {
-                    setTimeout(runAssemble, 100);
-                    return;
-                }
 
                 const container = document.createElement('div');
                 container.style.position = 'absolute';
@@ -464,7 +467,6 @@
                 container.style.left = img.offsetLeft + 'px';
                 container.style.width = w + 'px';
                 container.style.height = h + 'px';
-                // Keeping original CSS mask so it matches exactly
                 container.style.webkitMaskImage = 'radial-gradient(ellipse 95% 90% at 50% 30%, black 50%, transparent 100%)';
                 container.style.maskImage = 'radial-gradient(ellipse 95% 90% at 50% 30%, black 50%, transparent 100%)';
                 container.style.zIndex = '10';
@@ -479,8 +481,8 @@
                     for(let c=0; c<cols; c++) {
                         const piece = document.createElement('div');
                         piece.style.position = 'absolute';
-                        piece.style.width = pieceW + 'px';
-                        piece.style.height = pieceH + 'px';
+                        piece.style.width = Math.ceil(pieceW) + 'px';
+                        piece.style.height = Math.ceil(pieceH) + 'px';
                         piece.style.left = (c * pieceW) + 'px';
                         piece.style.top = (r * pieceH) + 'px';
                         piece.style.backgroundImage = `url('${img.src}')`;
@@ -496,7 +498,6 @@
                         piece.style.opacity = '0';
                         piece.style.transition = `all cubic-bezier(0.34, 1.56, 0.64, 1) ${1 + Math.random()*0.5}s`;
                         
-                        // Wait a bit for the text animation to run before assembling image
                         piece.style.transitionDelay = `${0.6 + Math.random() * 0.8}s`; 
                         
                         container.appendChild(piece);
@@ -514,12 +515,17 @@
                 }, 3000);
             };
 
-            if (img.complete) { runAssemble(); } 
-            else { img.onload = runAssemble; }
+            // Wait for full load before animating to avoid GitHub Pages calculation issues
+            if (img.complete && img.naturalHeight !== 0) { 
+                runAssemble(); 
+            } else { 
+                img.onload = runAssemble; 
+                img.onerror = () => { img.style.opacity = '1'; }; 
+            }
         }
         
-        // Let the document load, then run image assemble
-        document.addEventListener("DOMContentLoaded", assembleImage);
+        // Use 'load' event instead of DOMContentLoaded
+        window.addEventListener('load', assembleImage);
 
 
         // Education Panel Toggle
@@ -530,7 +536,7 @@
             overlay.classList.toggle('active');
         }
 
-        // Scroll Animations (Skills & Timeline)
+        // Scroll Animations
         const observerOptions = { threshold: 0.2 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
