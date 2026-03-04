@@ -18,8 +18,19 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-light); }
+        body { color: var(--text-light); }
         a { text-decoration: none; color: inherit; }
+
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-color: var(--bg-dark);
+        }
 
         /* Navbar (Same as main page) */
         header {
@@ -40,7 +51,7 @@
         .home-btn:hover { background: var(--secondary); transform: translateY(-3px); }
 
         /* Video Section Styles */
-        .video-section { padding: 120px 2rem 5rem; max-width: 1200px; margin: 0 auto; min-height: 100vh; }
+        .video-section { padding: 120px 2rem 5rem; max-width: 1200px; margin: 0 auto; min-height: 100vh; position: relative; z-index: 1; }
         .section-header { text-align: center; margin-bottom: 3rem; }
         .section-header h2 { font-size: 2.5rem; color: var(--text-light); margin-bottom: 10px; }
         .section-header .line { width: 80px; height: 4px; background: var(--primary); margin: 0 auto; border-radius: 2px; }
@@ -52,6 +63,7 @@
         .video-card { 
             background: var(--card-bg); border-radius: 15px; overflow: hidden; 
             border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s, box-shadow 0.3s; 
+            backdrop-filter: blur(5px);
         }
         .video-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
         
@@ -64,10 +76,12 @@
         .video-info h3 { color: var(--secondary); font-size: 1.3rem; margin-bottom: 8px; }
         .video-info p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; }
 
-        footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 4rem; color: #64748b; }
+        footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 4rem; color: #64748b; position: relative; z-index: 1; }
     </style>
 </head>
 <body>
+
+    <div id="particles-js"></div>
 
     <header>
         <nav>
@@ -90,10 +104,8 @@
                     <iframe src="https://www.youtube.com/embed/L8CSKDETJ8s?si=wQakbOnMN0r1Nw8i" title="YouTube video" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
-                    <h3>Custom Cat6 Crossover Cable Assembly (T568A to T568B)</h3>
-                    <p>Built a functional Crossover cable using T568A and T568B standards.
-
-Enabled direct device-to-device communication, demonstrating manual crimping skills and knowledge of EIA/TIA wiring standards.</p>
+                    <h3>MikroTik Router Setup</h3>
+                    <p>Basic configuration, assigning IP addresses, and setting up DHCP server using Winbox.</p>
                 </div>
             </div>
 
@@ -124,7 +136,25 @@ Enabled direct device-to-device communication, demonstrating manual crimping ski
         <p>&copy; 2026 Md. Masud Rana Anik. All Rights Reserved.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#2563eb" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#0ea5e9", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+            },
+            "retina_detect": true
+        });
+    </script>
 </body>
-
 </html>
-
