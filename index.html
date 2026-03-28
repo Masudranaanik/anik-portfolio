@@ -43,7 +43,6 @@
         .logo { font-size: 1.8rem; font-weight: 700; color: var(--text-light); }
         .logo span { color: var(--primary); }
         
-        /* Social & Header Buttons */
         .social-nav { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
         .social-nav a.icon { font-size: 1.2rem; color: var(--text-gray); transition: 0.3s; }
         .social-nav a.icon:hover { color: var(--primary); transform: translateY(-3px); }
@@ -229,18 +228,49 @@
         .edu-details { color: #94a3b8; font-size: 0.9rem; line-height: 1.6; }
         .edu-details span { color: var(--text-light); font-weight: 600; }
 
+        /* ========================================================
+           NEW: MOBILE RESPONSIVENESS FIXES (FOR PHONES & TABLETS)
+           ======================================================== */
         @media (max-width: 768px) {
-            .hero-text h1 { font-size: 2.5rem; }
-            .hero-container { text-align: center; padding-top: 20px; }
-            .hero-text { margin-right: 0; margin-top: 2rem; }
-            .btn-whatsapp { width: 100%; justify-content: center; }
+            /* Navbar Fixes for Mobile */
+            header { padding: 15px 0; }
+            nav { flex-direction: column; gap: 15px; text-align: center; }
             .social-nav { justify-content: center; gap: 10px; }
+            .edu-btn, .cv-btn, .portfolio-btn { font-size: 0.85rem; padding: 6px 12px; }
+            .social-nav a.icon { font-size: 1.1rem; }
+
+            /* Hero Section Fixes */
+            .hero { padding-top: 160px; text-align: center; }
+            .hero-container { justify-content: center; flex-direction: column-reverse; }
+            .hero-text { margin-right: 0; margin-top: 2rem; display: flex; flex-direction: column; align-items: center; }
+            .hero-text h1 { font-size: 2.2rem; margin-bottom: 15px; }
+            .hero-text h2 { font-size: 1.3rem; margin-bottom: 15px; }
+            .hero-text p { font-size: 1rem; max-width: 100%; padding: 0 10px; }
+            .btn-whatsapp { width: 90%; justify-content: center; }
+
+            /* Professional Journey Timeline Fixes for Mobile */
+            .new-timeline::after { left: 25px; } /* Move center line to the left edge */
+            .timeline-item { width: 100% !important; padding: 20px 10px 20px 70px !important; }
             
-            .new-timeline::after { left: 31px; }
-            .timeline-item { width: 100%; padding-left: 70px; padding-right: 15px; }
-            .timeline-item:nth-child(even) { left: 0; }
-            .timeline-item:nth-child(odd), .timeline-item:nth-child(even) { transform: translateY(50px) translateX(0); }
-            .timeline-logo, .timeline-item:nth-child(even) .timeline-logo { left: 1px; }
+            /* Make both cards align left and animate from BOTTOM instead of sides */
+            .timeline-item:nth-child(odd), 
+            .timeline-item:nth-child(even) { 
+                left: 0 !important; 
+                transform: translateY(50px) !important; /* Slide up animation */
+            }
+            .timeline-item.show { transform: translateY(0) !important; }
+            
+            /* Adjust logos to sit on the line */
+            .timeline-logo { 
+                width: 40px !important; height: 40px !important; font-size: 1rem !important; 
+                top: 25px !important; box-shadow: none !important;
+            }
+            .timeline-item:nth-child(odd) .timeline-logo, 
+            .timeline-item:nth-child(even) .timeline-logo { left: 5px !important; right: auto !important; }
+
+            /* Contact Section */
+            .contact-box { padding: 2rem 1rem; }
+            .contact-item { font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -284,9 +314,9 @@
                 <button onclick="toggleEducation()" class="edu-btn"><i class="fas fa-graduation-cap"></i> Education</button>
                 <a href="masud-cv.pdf" target="_blank" class="cv-btn"><i class="fas fa-file-pdf"></i> View CV</a>
                 <a href="projects.html" class="portfolio-btn"><i class="fas fa-video"></i> My Projects</a>
-                <a href="https://www.linkedin.com/in/md-masud-rana-anik/" target="_blank" title="LinkedIn" class="icon"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" title="LinkedIn" class="icon"><i class="fab fa-linkedin"></i></a>
                 <a href="#" target="_blank" title="GitHub" class="icon"><i class="fab fa-github"></i></a>
-                <a href="https://www.facebook.com/masudranaanik890" target="_blank" title="Facebook" class="icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank" title="Facebook" class="icon"><i class="fab fa-facebook"></i></a>
                 <a href="https://wa.me/8801837699673" target="_blank" class="icon whatsapp-nav" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
         </nav>
@@ -308,7 +338,7 @@
             
             <div class="hero-img-box">
                 <div class="img-wrapper" style="position: relative; display: flex; justify-content: center; width: 100%;">
-                    <img src="masud-bg-removed.jpg" alt="Masud Rana Profile" class="hero-img" id="profile-img" style="opacity: 0;">
+                    <img src="masud-bg-removed.jpg" alt="Masud Rana Profile" class="hero-img">
                 </div>
             </div>
 
@@ -444,90 +474,6 @@
             setTimeout(type, typeSpeed);
         })();
 
-        // FIXED: Robust Image Fragment Assemble Animation for GitHub Pages
-        function assembleImage() {
-            const img = document.getElementById('profile-img');
-            if (!img) return;
-
-            // Fallback: If animation fails or network is slow, just show the image normally
-            const fallbackTimer = setTimeout(() => {
-                img.style.opacity = '1';
-            }, 2000);
-
-            const runAssemble = () => {
-                clearTimeout(fallbackTimer);
-                
-                const wrapper = img.parentElement;
-                const w = img.clientWidth || 350;
-                const h = img.clientHeight || 400;
-
-                const container = document.createElement('div');
-                container.style.position = 'absolute';
-                container.style.top = img.offsetTop + 'px';
-                container.style.left = img.offsetLeft + 'px';
-                container.style.width = w + 'px';
-                container.style.height = h + 'px';
-                container.style.webkitMaskImage = 'radial-gradient(ellipse 95% 90% at 50% 30%, black 50%, transparent 100%)';
-                container.style.maskImage = 'radial-gradient(ellipse 95% 90% at 50% 30%, black 50%, transparent 100%)';
-                container.style.zIndex = '10';
-                wrapper.appendChild(container);
-
-                const rows = 8;
-                const cols = 8;
-                const pieceW = w / cols;
-                const pieceH = h / rows;
-
-                for(let r=0; r<rows; r++) {
-                    for(let c=0; c<cols; c++) {
-                        const piece = document.createElement('div');
-                        piece.style.position = 'absolute';
-                        piece.style.width = Math.ceil(pieceW) + 'px';
-                        piece.style.height = Math.ceil(pieceH) + 'px';
-                        piece.style.left = (c * pieceW) + 'px';
-                        piece.style.top = (r * pieceH) + 'px';
-                        piece.style.backgroundImage = `url('${img.src}')`;
-                        piece.style.backgroundSize = `${w}px ${h}px`;
-                        piece.style.backgroundPosition = `-${c * pieceW}px -${r * pieceH}px`;
-                        piece.style.backgroundRepeat = 'no-repeat';
-                        
-                        const tx = (Math.random() - 0.5) * 800;
-                        const ty = (Math.random() - 0.5) * 800;
-                        const rot = (Math.random() - 0.5) * 720; 
-                        
-                        piece.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(0)`;
-                        piece.style.opacity = '0';
-                        piece.style.transition = `all cubic-bezier(0.34, 1.56, 0.64, 1) ${1 + Math.random()*0.5}s`;
-                        
-                        piece.style.transitionDelay = `${0.6 + Math.random() * 0.8}s`; 
-                        
-                        container.appendChild(piece);
-                        
-                        setTimeout(() => {
-                            piece.style.transform = 'translate(0, 0) rotate(0) scale(1)';
-                            piece.style.opacity = '1';
-                        }, 50);
-                    }
-                }
-
-                setTimeout(() => {
-                    img.style.opacity = '1';
-                    setTimeout(() => container.remove(), 500);
-                }, 3000);
-            };
-
-            // Wait for full load before animating to avoid GitHub Pages calculation issues
-            if (img.complete && img.naturalHeight !== 0) { 
-                runAssemble(); 
-            } else { 
-                img.onload = runAssemble; 
-                img.onerror = () => { img.style.opacity = '1'; }; 
-            }
-        }
-        
-        // Use 'load' event instead of DOMContentLoaded
-        window.addEventListener('load', assembleImage);
-
-
         // Education Panel Toggle
         function toggleEducation() {
             const panel = document.getElementById('eduPanel');
@@ -537,7 +483,7 @@
         }
 
         // Scroll Animations
-        const observerOptions = { threshold: 0.2 };
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -560,5 +506,4 @@
         });
     </script>
 </body>
-
 </html>
