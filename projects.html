@@ -18,10 +18,9 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { color: var(--text-light); }
+        body { background-color: var(--bg-dark); color: var(--text-light); }
         a { text-decoration: none; color: inherit; }
 
-        /* Particles Background */
         #particles-js {
             position: fixed;
             width: 100%;
@@ -29,10 +28,8 @@
             top: 0;
             left: 0;
             z-index: -1;
-            background-color: var(--bg-dark);
         }
 
-        /* Navbar (Same as main page) */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
@@ -50,29 +47,25 @@
         }
         .home-btn:hover { background: var(--secondary); transform: translateY(-3px); }
 
-        /* Video Section Styles */
         .video-section { padding: 120px 2rem 5rem; max-width: 1200px; margin: 0 auto; min-height: 100vh; position: relative; z-index: 1; }
         .section-header { text-align: center; margin-bottom: 3rem; }
         .section-header h2 { font-size: 2.5rem; color: var(--text-light); margin-bottom: 10px; }
         .section-header .line { width: 80px; height: 4px; background: var(--primary); margin: 0 auto; border-radius: 2px; }
 
-        /* Grid Layout */
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
         
-        /* Video Card */
         .video-card { 
             background: var(--card-bg); border-radius: 15px; overflow: hidden; 
             border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s, box-shadow 0.3s; 
             backdrop-filter: blur(5px);
+            display: flex; flex-direction: column;
         }
         .video-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
         
-        /* YouTube Embed Wrapper for Responsiveness */
-        .video-wrapper { position: relative; padding-bottom: 56.25%; /* 16:9 ratio */ height: 0; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
         
-        /* Video Details (Title & Description) */
-        .video-info { padding: 1.5rem; text-align: center; }
+        .video-info { padding: 1.5rem; text-align: center; flex-grow: 1; }
         .video-info h3 { color: var(--secondary); font-size: 1.3rem; margin-bottom: 8px; }
         .video-info p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; }
 
@@ -101,72 +94,53 @@
             
             <div class="video-card">
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/L8CSKDETJ8s?si=wQakbOnMN0r1Nw8i" title="YouTube video" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/L8CSKDETJ8s" title="YouTube video" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
-                    <h3>Custom Cat6 Crossover Cable Assembly (T568A to T568B)</h3>
-                    <p>Built a functional Crossover cable using T568A and T568B standards. Enabled direct device-to-device communication, demonstrating manual crimping skills and knowledge of EIA/TIA wiring standards.</p>
+                    <h3>Custom Cat6 Crossover Cable Assembly</h3>
+                    <p>Built a functional Crossover cable using T568A and T568B standards for direct device communication.</p>
                 </div>
             </div>
 
             <div class="video-card">
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/lRTOyfbnwWk?si=-kdw1Woyq3Bgb7fe" title="YouTube video" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/lRTOyfbnwWk" title="YouTube video" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
-                    <h3>Straight-Through Ethernet Cable Crimping (Cat5/Cat6)</h3>
-                    <p>A practical demonstration of making a straight-through network cable using twisted-pair Cat cables and RJ45 connectors. This cable is essential for connecting different networking devices, such as a PC to a switch or router.</p>
+                    <h3>Straight-Through Ethernet Cable Crimping</h3>
+                    <p>Demonstration of making a straight-through network cable essential for connecting PC to switch/router.</p>
                 </div>
             </div>
 
             <div class="video-card">
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/h9RpxK9Sw1o?si=XC5-MygxjL5kabOI" title="YouTube video" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/h9RpxK9Sw1o" title="YouTube video" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
-                    <h3>
-MikroTik Router Configuration: Assigning LAN IP for Internet Access </h3>
-                    <p>A practical walkthrough on adding and configuring a new IP address on a MikroTik router interface. This setup demonstrates how to establish the network gateway so that connected client PCs can successfully access the interne</p>
+                    <h3>MikroTik Router: Assigning LAN IP</h3>
+                    <p>Configuring IP addresses on MikroTik to establish network gateways for client internet access.</p>
                 </div>
             </div>
 
-             <div class="video-card">
+            <div class="video-card">
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/LU2lXQpYWUA?si=OxObuQEOOHP6QCQL" title="YouTube video" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/LU2lXQpYWUA" title="YouTube video" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
-                    <h3>
-How to Test a PC Power Supply Unit (PSU) - Working or Dead?</h3>
-                    <pA practical demonstration on how to test a computer's Power Supply Unit (PSU) to determine if it is functioning correctly or faulty. This video covers the essential troubleshooting steps to easily diagnose power-related hardware issues.</p>
-                </div>
-                   <div class="video-card">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/8ncVyaZnboI?si=QUELdw19IC6_fClwL" title="YouTube video" allowfullscreen></iframe>
-                </div>
-                <div class="video-info">
-                    <h3>
-PC Troubleshooting Guide: How to Fix Overheating & Hardware Issues</h3>
-                    <p>A comprehensive guide on how to identify and solve common PC hardware problems. This video focuses on diagnosing PC overheating issues, checking internal components, and step-by-step troubleshooting to keep your computer running safely and smoothly. Perfect for beginners and IT enthusiasts!</p>
-                </div>
-                        <div class="video-card">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/L8CSKDETJ8s?si=wQakbOnMN0r1Nw8i" title="YouTube video" allowfullscreen></iframe>
-                </div>
-                <div class="video-info">
-                    <h3>Custom Cat6 Crossover Cable Assembly (T568A to T568B)</h3>
-                    <p>Built a functional Crossover cable using T568A and T568B standards. Enabled direct device-to-device communication, demonstrating manual crimping skills and knowledge of EIA/TIA wiring standards.</p>
-                </div>
-            </div>
- <div class="video-card">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/L8CSKDETJ8s?si=wQakbOnMN0r1Nw8i" title="YouTube video" allowfullscreen></iframe>
-                </div>
-                <div class="video-info">
-                    <h3>Custom Cat6 Crossover Cable Assembly (T568A to T568B)</h3>
-                    <p>Built a functional Crossover cable using T568A and T568B standards. Enabled direct device-to-device communication, demonstrating manual crimping skills and knowledge of EIA/TIA wiring standards.</p>
+                    <h3>How to Test a PC Power Supply (PSU)</h3>
+                    <p>Practical demonstration on identifying if a PSU is functioning correctly or faulty.</p>
                 </div>
             </div>
 
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/8ncVyaZnboI" title="YouTube video" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>PC Troubleshooting Guide</h3>
+                    <p>Identify and solve common PC hardware problems, focusing on overheating and internal components.</p>
+                </div>
+            </div>
 
         </div>
     </section>
@@ -182,22 +156,16 @@ PC Troubleshooting Guide: How to Fix Overheating & Hardware Issues</h3>
                 "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#2563eb" },
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.5, "random": false },
+                "opacity": { "value": 0.5 },
                 "size": { "value": 3, "random": true },
                 "line_linked": { "enable": true, "distance": 150, "color": "#0ea5e9", "opacity": 0.4, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                "move": { "enable": true, "speed": 2 }
             },
             "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } }
             },
             "retina_detect": true
         });
     </script>
 </body>
-
 </html>
-
-
-
