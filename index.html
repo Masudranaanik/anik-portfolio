@@ -106,6 +106,25 @@
             -webkit-mask-image: radial-gradient(ellipse 95% 90% at 50% 30%, black 50%, transparent 100%);
             mask-image: radial-gradient(ellipse 95% 90% at 50% 30%, black 50%, transparent 100%);
         }
+        .btn-video {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(45deg, #ff0000, #ff4d4d);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 15px;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+    transition: 0.3s;
+}
+
+.btn-video:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
+}
 
         /* SECTIONS */
         section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;}
@@ -272,6 +291,77 @@
             .contact-box { padding: 2rem 1rem; }
             .contact-item { font-size: 0.95rem; }
         }
+        .btn-video {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(45deg, #ff0000, #ff4d4d);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 15px;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+    transition: 0.3s;
+}
+
+.btn-video:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.video-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.video-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    width: 90%;
+    max-width: 800px;
+    background: #000;
+    border-radius: 10px;
+    z-index: 3001;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.video-popup.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.video-popup iframe {
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+}
+
+.close-video {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    font-size: 35px;
+    color: white;
+    cursor: pointer;
+}
     </style>
 </head>
 <body>
@@ -328,11 +418,19 @@
                 <h1 id="animated-heading"></h1>
                 <h2>I am a <span class="typing-text"></span></h2>
                 <p>
-                    A dedicated Computer Science professional with proven expertise in <strong>Network Engineering</strong> and <strong>IT Infrastructure</strong>. 
-                    Currently ensuring seamless operations at DIPTI through advanced router configuration, surveillance setup, and hardware maintenance.
+                    Dedicated Diploma in Computer Science 
+student with practical experience as an Assistant IT Officer. Proficient in Network Configuration 
+(Cisco & MikroTik), Surveillance System Setup 
+(CCTV), and Hardware Maintenance. Eager to 
+leverage technical expertise to ensure seamless 
+IT operations and contribute to organizational 
+success.
                 </p>
                 <a href="https://wa.me/8801837699673" target="_blank" class="btn-whatsapp">
                     <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    <a href="#" onclick="openVideo()" class="btn-video">
+                     <i class="fas fa-play-circle"></i> Watch My Intro Video
+                   </a>
                 </a>
             </div>
             
@@ -427,7 +525,20 @@
     </section>
 
     <footer>
+
         <p>&copy; 2026 Md. Masud Rana Anik. All Rights Reserved.</p>
+        <div class="video-overlay" id="videoOverlay" onclick="closeVideo()"></div>
+
+<div class="video-popup" id="videoPopup">
+    <span class="close-video" onclick="closeVideo()">&times;</span>
+    
+    <iframe id="videoFrame" 
+        src="" 
+        frameborder="0" 
+        allow="autoplay; encrypted-media" 
+        allowfullscreen>
+    </iframe>
+</div>
     </footer>
 
     <script>
@@ -504,6 +615,19 @@
             "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } } },
             "retina_detect": true
         });
+        function openVideo() {
+    document.getElementById("videoOverlay").classList.add("active");
+    document.getElementById("videoPopup").classList.add("active");
+
+    document.getElementById("videoFrame").src = "https://www.youtube.com/embed/ZBjWsvyzEKc?si=lWj77ABMB7KkKQpe";
+}
+
+function closeVideo() {
+    document.getElementById("videoOverlay").classList.remove("active");
+    document.getElementById("videoPopup").classList.remove("active");
+
+    document.getElementById("videoFrame").src = "";
+}
     </script>
 </body>
 </html>
